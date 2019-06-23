@@ -23,13 +23,24 @@ class Post extends Component {
 
   render() {
     console.log(this.props);
-    const { post } = this.props;
+    const { post, deletePost, history } = this.props;
     const postData = post ? (
       <div className="container">
         <div className="card">
           <div className="card-content">
             <h4>{post.title}</h4>
             <p>{post.body}</p>
+            <div className="section">
+              <button
+                onClick={() => {
+                  history.push('/');
+                  deletePost(post.id);
+                }}
+                className="btn center pink darken-3 m-2"
+              >
+                delete
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -47,4 +58,13 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Post);
+const mapDispatchToProps = dispatch => {
+  return {
+    deletePost: id => dispatch({ type: 'DELETE POST', id: id })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post);

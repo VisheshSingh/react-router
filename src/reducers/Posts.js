@@ -22,6 +22,13 @@ const initState = {
 };
 
 const Posts = (state = initState, action) => {
+  if (action.type === 'DELETE POST') {
+    let newPosts = state.posts.filter(post => post.id !== action.id);
+    return {
+      ...state,
+      posts: newPosts
+    };
+  }
   return state;
 };
 
