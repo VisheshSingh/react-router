@@ -1,7 +1,10 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
-export default function Navbar() {
+function Navbar(props) {
+  setTimeout(() => {
+    props.history.push('/');
+  });
   return (
     <nav className="nav-wrapper pink darken-3">
       <div className="container">
@@ -10,7 +13,7 @@ export default function Navbar() {
         </a>
         <ul className="right">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <NavLink to="/about">About</NavLink>
@@ -23,3 +26,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default withRouter(Navbar);
