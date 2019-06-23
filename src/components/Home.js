@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Rainbow from '../hoc/Rainbow';
 import { Link } from 'react-router-dom';
 
 class Home extends Component {
@@ -30,7 +29,7 @@ class Home extends Component {
           <div key={post.id} className="card post">
             <div className="card-content">
               <Link to={'/' + post.id}>
-                <h4>{post.title}</h4>
+                <h4 class="pink-text darken-3">{post.title}</h4>
               </Link>
               <p>{post.body}</p>
             </div>
@@ -49,4 +48,4 @@ class Home extends Component {
   }
 }
 
-export default Rainbow(Home);
+export default Home;
