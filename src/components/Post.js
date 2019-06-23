@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import deletePost from '../actions/deletePost';
 
 class Post extends Component {
   // getPost = async id => {
@@ -60,7 +61,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deletePost: id => dispatch({ type: 'DELETE POST', id: id })
+    deletePost: id => dispatch(deletePost(id))
   };
 };
 
