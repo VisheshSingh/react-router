@@ -9,7 +9,7 @@ function Navbar(props) {
     <nav className="nav-wrapper pink darken-3">
       <div className="container">
         <a href="/" className="brand-logo">
-          Poke'Times
+          Gamers'Box
         </a>
         <ul className="right">
           <li>
