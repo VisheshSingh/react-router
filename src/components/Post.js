@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Post extends Component {
-  state = {
-    post: null
-  };
+  // getPost = async id => {
+  //   const response = await fetch(
+  //     `https://jsonplaceholder.typicode.com/posts/${id}`
+  //   );
+  //   const post = await response.json();
+  //   return post;
+  // };
 
-  getPost = async id => {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
-    );
-    const post = await response.json();
-    return post;
-  };
-
-  componentDidMount() {
-    const id = this.props.match.params.post_id;
-    const post = this.getPost(id)
-      .then(data => {
-        this.setState({
-          post: data
-        });
-      })
-      .catch(err => console.log(err.message));
-  }
+  // componentDidMount() {
+  //   const id = this.props.match.params.post_id;
+  //   const post = this.getPost(id)
+  //     .then(data => {
+  //       this.setState({
+  //         post: data
+  //       });
+  //     })
+  //     .catch(err => console.log(err.message));
+  // }
 
   render() {
-    const { post } = this.state;
+    console.log(this.props);
+    const { post } = this.props;
     const postData = post ? (
       <div className="container">
         <div className="card">
@@ -42,4 +40,11 @@ class Post extends Component {
   }
 }
 
-export default Post;
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.post_id;
+  return {
+    post: state.posts.find(post => post.id == id)
+  };
+};
+
+export default connect(mapStateToProps)(Post);
