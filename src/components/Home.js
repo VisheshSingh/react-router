@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Rainbow from '../hoc/Rainbow';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   state = {
@@ -8,7 +9,6 @@ class Home extends Component {
   componentDidMount() {
     this.getPosts()
       .then(data => {
-        console.log(data);
         this.setState({
           posts: [...data]
         });
@@ -29,7 +29,9 @@ class Home extends Component {
         return (
           <div key={post.id} className="card post">
             <div className="card-content">
-              <h4>{post.title}</h4>
+              <Link to={'/' + post.id}>
+                <h4>{post.title}</h4>
+              </Link>
               <p>{post.body}</p>
             </div>
           </div>
